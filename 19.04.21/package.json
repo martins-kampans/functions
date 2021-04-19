@@ -1,0 +1,12 @@
+{
+  "name": "19.04.21",
+  "version": "1.0.0",
+  "description": "majas darbs uz 10 balem",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "author": "Martins Kampans",
+  "license": "ISC",
+  "type": "module"
+}
