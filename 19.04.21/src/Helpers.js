@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export function fill(arraySize, value) {
   return new Array(arraySize).fill(value);
 }
@@ -26,22 +28,17 @@ export const arrayFromPairs = (arrry) =>
     }, 
 {});
 
+
+//without
 export function  without(array, ...args){
-  // let argArray = new Array(...args);
-  let argumentArray = add(...args);
-  let concatArray = array.concat(argumentArray);
-  const distinct = (value, index, self) => {
-    return self.indexOf(value) === index;
-  }
-  let uniqueArray = concatArray.filter(distinct);
-  return uniqueArray;
-}
-function add(...args){
-  let result = [];
-  for(let arg of args) result.push(arg);
+  let argArray = new Array(...args);
+  let result = array.filter(function(val) {
+    return argArray.indexOf(val) == -1;
+  });
   return result;
 }
 
+//Unique
 export function unique(array){
   let newArray = [];
   array.forEach(element => {
@@ -50,14 +47,21 @@ export function unique(array){
     }
   });
   return newArray;
-  // return array.filter((value, index) => array.indexOf(value) === index);
+  // return newArray.filter((value, index) => array.indexOf(value) === index);
 }
 
 
+//isEqual
 export function isEqual(arrA, arrB){
   return JSON.stringify(arrA) === JSON.stringify(arrB)
 }
+// export function isEqual(arrA, arrB){
+//   const equal = _.isEqual(arrA, arrB);
+//   return equal;
+// }
 
+
+//Flatten
 export function flatten(array){
   let stringified = JSON.stringify(array);
   let newArray = Array.from(stringified);
@@ -65,11 +69,23 @@ export function flatten(array){
   return flatArray;
 }
 
+//Chunk
 export function chunk(array, size) {
   var results = [];
   while (array.length) {
     results.push(array.splice(0, size));
   }
   return results;
+};
+// export function chunk(array, size) {
+//   const chunks = _.chunk(array, size);
+//   return chunks;
+// };
+
+
+//Intersection
+export const intersection = (...arrays) => {
+  const uniqueValues = _.intersection(...arrays);
+  return uniqueValues;
 };
 
